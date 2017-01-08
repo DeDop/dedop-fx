@@ -4,6 +4,7 @@
 sensor mounted on the [ESA Sentinel-3](http://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-3) satellite into 
 audio samples. You can get SRAL netCDF sample files (`*.nc`) from the [Sentinel-3A Altimetry Test Data Set](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-3-altimetry/test-data-set). 
 
+![DeDop FX Screenshot](https://github.com/DeDop/dedop-fx/blob/master/screenshot.png)
 
 # License
 
