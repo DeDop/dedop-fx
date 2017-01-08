@@ -1,12 +1,14 @@
 # About
 
-**DeDopFX** *plays* L1B altimeter data from the [SRAL](https://sentinel.esa.int/web/sentinel/missions/sentinel-3/instrument-payload/altimetry) 
-sensor mounted on the [ESA Sentinel-3](http://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-3) satellite.
-You can get netCDF sample files (`*.nc`) from the [Sentinel-3A Altimetry Test Data Set](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-3-altimetry/test-data-set). 
+**DeDop FX** is an experimental (=fun) tool which *plays* satellite altimeter data. Currently it can transform the L1B data from the [SRAL](https://sentinel.esa.int/web/sentinel/missions/sentinel-3/instrument-payload/altimetry) 
+sensor mounted on the [ESA Sentinel-3](http://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-3) satellite into 
+audio samples. You can get SRAL netCDF sample files (`*.nc`) from the [Sentinel-3A Altimetry Test Data Set](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-3-altimetry/test-data-set). 
+
 
 # License
 
 This software is distributed under the terms and conditions of the [MIT License (MIT)](https://opensource.org/licenses/MIT).
+
 
 
 # Developer Guide
@@ -32,6 +34,7 @@ TODO
 ### Linux
    
 TODO
+
 
 
 # Missing Features
