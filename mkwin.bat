@@ -14,6 +14,7 @@
    -outdir dist ^
    -outfile DeDopFX ^
    -srcfiles LICENSE.md ^
+   -srcfiles lib\netcdf-license.md ^
    -srcfiles lib\netcdfAll-4.6.6.jar ^
    -srcfiles build\DeDopFX.jar ^
    -appclass dedopfx.ui.App ^
