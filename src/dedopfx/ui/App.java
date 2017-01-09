@@ -261,7 +261,7 @@ public class App extends Application {
         borderPane.setCenter(borderPane0);
         borderPane.setBottom(bottomAnchorPane);
 
-        Scene scene = new Scene(borderPane, 460, 500);
+        Scene scene = new Scene(borderPane, 480, 520);
         updateEnabledState();
 
         updateTitle();
@@ -786,7 +786,7 @@ public class App extends Application {
                 fileLabel.setText(String.format("%s (not loaded)", sourceFile.getPath()));
             }
         } else {
-            fileLabel.setText("No source data file selected. Use 'Open' from the 'File' menu.'");
+            fileLabel.setText("No source data file selected. Use 'Open' from the 'File' menu.");
         }
     }
 
