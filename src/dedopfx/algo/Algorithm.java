@@ -92,10 +92,8 @@ public class Algorithm {
         }
 
         final boolean harmonicsEnabled = algorithmInputs.getHarmonicsMode() != Harmonics.OFF;
-        final double invAmplitudeWeighting = 1.0 - amplitudeWeighting;
         final double modulationRatio = modulationNom / modulationDenom;
 
-        double normalizedSourceValue;
         double carrierFrequency = 0;
         double value;
         double valueSum = 0.;
@@ -124,7 +122,7 @@ public class Algorithm {
                     frequency = carrierFrequency;
                 }
 
-                phase = 0;
+                phase = 0.;
                 if (modulationEnabled) {
                     phase += modulationDepth * modulationWaveform.compute(modulationRatio * frequency * time);
                 }
@@ -135,7 +133,7 @@ public class Algorithm {
         }
 
         if (amplitudeSum > 0.) {
-            double sum = invAmplitudeWeighting * sampleCount + amplitudeWeighting * amplitudeSum;
+            double sum = (1.0 - amplitudeWeighting) * (sampleCount / 2) + amplitudeWeighting * amplitudeSum;
             value = valueSum / sum;
         } else {
             value = 0;
@@ -146,12 +144,12 @@ public class Algorithm {
         if (value < -1.) {
             value = -1.;
             // todo: signal bottomClip clip
-            System.out.println("bottom clip at " + currentRecordIndex);
+            // System.out.println("bottom clip at " + currentRecordIndex);
         }
         if (value > 1.) {
             value = 1.;
             // todo: signal top clip
-            System.out.println("top clip at " + currentRecordIndex);
+            // System.out.println("top clip at " + currentRecordIndex);
         }
 
         return value;
