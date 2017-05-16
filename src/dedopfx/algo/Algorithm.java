@@ -29,6 +29,8 @@ import dedopfx.audio.TuningSystem;
 import dedopfx.audio.Waveform;
 import javafx.beans.value.ChangeListener;
 
+import java.util.Arrays;
+
 public class Algorithm {
 
     public interface RecordObserver {
@@ -237,17 +239,16 @@ public class Algorithm {
                 } else if (tuningSystem == TuningSystem.EQUAL_TEMPERAMENT) {
                     carrierFrequency = equalTemperament(minFrequency, i, octaveSubdivisionCount);
                 } else {
-                    final int numOctaves = i / octaveSubdivisionCount;
-                    final int scaleIndex = (i * scaleKeys.length) / sampleCount;
-                    final int key0 = numOctaves * octaveSubdivisionCount;
-                    final int keyDelta = (octaveSubdivisionCount * scaleKeys[scaleIndex]) / 12;
-                    carrierFrequency = equalTemperament(minFrequency, key0 + keyDelta, octaveSubdivisionCount);
+                    final int octave = 12 * (i / octaveSubdivisionCount);
+                    final int key = scaleKeys[i % scaleKeys.length];
+                    carrierFrequency = equalTemperament(minFrequency, octave + key, 12.0);
                 }
                 carrierFrequencies[i] = carrierFrequency;
             }
         } else {
             carrierFrequencies = null;
         }
+        System.out.println("carrierFrequencies = " + Arrays.toString(carrierFrequencies));
     }
 
     private static double equalTemperament(double minFrequency, int keyIndex, double octaveSubdivisionCount) {
