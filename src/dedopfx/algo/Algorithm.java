@@ -239,6 +239,12 @@ public class Algorithm {
                 } else if (tuningSystem == TuningSystem.EQUAL_TEMPERAMENT) {
                     carrierFrequency = equalTemperament(minFrequency, i, octaveSubdivisionCount);
                 } else {
+                    // TODO: Don't use octaveSubdivisionCount for scales. Use new octaveCount instead which
+                    // subdivides the samples array into octaveCount octaves. We then get:
+                    // int sampleCountPerOctave = sampleCount / octaveCount;
+                    // int octave = 12 * (i * octaveCount) / sampleCount;
+                    // int scaleIndex = ((i % sampleCountPerOctave) * scaleKeys.length) / sampleCountPerOctave
+                    // int key = scaleKeys[scaleIndex]
                     final int octave = 12 * (i / octaveSubdivisionCount);
                     final int key = scaleKeys[i % scaleKeys.length];
                     carrierFrequency = equalTemperament(minFrequency, octave + key, 12.0);
