@@ -328,21 +328,30 @@ public class App extends Application {
                 16000.0,
                 maxFrequencyProperty, "%.1f");
 
-        IntegerProperty octaveSubdivisionsProperty = controller.getAlgorithmInputs().octaveSubdivisionCountProperty();
-        InputFieldWithSlider octaveSubdivisions = new InputFieldWithSliderInteger("Octave subdivisions",
+        IntegerProperty octaveSubdivisionCountProperty = controller.getAlgorithmInputs().octaveSubdivisionCountProperty();
+        InputFieldWithSlider octaveSubdivisionCount = new InputFieldWithSliderInteger("Octave subdivisions",
                 1,
                 128,
-                octaveSubdivisionsProperty);
+                octaveSubdivisionCountProperty);
+
+        IntegerProperty octaveCountProperty = controller.getAlgorithmInputs().octaveCountProperty();
+        InputFieldWithSlider octaveCount = new InputFieldWithSliderInteger("Number of octaves",
+                1,
+                10,
+                octaveCountProperty);
 
         final int extraRowIndex = ++rowIndex;
         Runnable installTuningSystem = () -> {
             TuningSystem tuningSystem = tuningSystemProperty.getValue();
-            octaveSubdivisions.removeFromGrid(settingsPane);
+            octaveSubdivisionCount.removeFromGrid(settingsPane);
+            octaveCount.removeFromGrid(settingsPane);
             maxFrequency.removeFromGrid(settingsPane);
             if (tuningSystem == TuningSystem.LINEAR) {
                 maxFrequency.addToGrid(settingsPane, extraRowIndex);
+            } else if (tuningSystem == TuningSystem.EQUAL_TEMPERAMENT) {
+                octaveSubdivisionCount.addToGrid(settingsPane, extraRowIndex);
             } else {
-                octaveSubdivisions.addToGrid(settingsPane, extraRowIndex);
+                octaveCount.addToGrid(settingsPane, extraRowIndex);
             }
         };
         installTuningSystem.run();

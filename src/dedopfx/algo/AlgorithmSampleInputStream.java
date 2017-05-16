@@ -27,7 +27,7 @@ package dedopfx.algo;
 import dedopfx.audio.SampleInputStream;
 
 public class AlgorithmSampleInputStream extends SampleInputStream {
-    public static final int MAX_SAMPLE_VALUE = Short.MAX_VALUE;
+    private static final int MAX_SAMPLE_VALUE = Short.MAX_VALUE;
 
     private final double sampleRate;
     private final Algorithm algorithm;

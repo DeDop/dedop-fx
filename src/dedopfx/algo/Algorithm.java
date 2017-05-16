@@ -29,8 +29,6 @@ import dedopfx.audio.TuningSystem;
 import dedopfx.audio.Waveform;
 import javafx.beans.value.ChangeListener;
 
-import java.util.Arrays;
-
 public class Algorithm {
 
     public interface RecordObserver {
@@ -62,6 +60,7 @@ public class Algorithm {
         algorithmInputs.minFrequencyProperty().addListener(carrierFrequenciesUpdater);
         algorithmInputs.maxFrequencyProperty().addListener(carrierFrequenciesUpdater);
         algorithmInputs.octaveSubdivisionCountProperty().addListener(carrierFrequenciesUpdater);
+        algorithmInputs.octaveCountProperty().addListener(carrierFrequenciesUpdater);
         updateCarrierFrequencies();
     }
 
@@ -135,7 +134,7 @@ public class Algorithm {
         }
 
         if (amplitudeSum > 0.) {
-            double sum = (1.0 - amplitudeWeighting) * (sampleCount / 2) + amplitudeWeighting * amplitudeSum;
+            double sum = (1.0 - amplitudeWeighting) * (0.5 * sampleCount) + amplitudeWeighting * amplitudeSum;
             value = valueSum / sum;
         } else {
             value = 0;
@@ -225,6 +224,7 @@ public class Algorithm {
         final double minFrequency = algorithmInputs.getMinFrequency();
         final double maxFrequency = algorithmInputs.getMaxFrequency();
         final int octaveSubdivisionCount = algorithmInputs.getOctaveSubdivisionCount();
+        final int octaveCount = algorithmInputs.getOctaveCount();
 
         if (sourceValues != null) {
             final int[] scaleKeys = tuningSystem.getKeys();
@@ -239,14 +239,10 @@ public class Algorithm {
                 } else if (tuningSystem == TuningSystem.EQUAL_TEMPERAMENT) {
                     carrierFrequency = equalTemperament(minFrequency, i, octaveSubdivisionCount);
                 } else {
-                    // TODO: Don't use octaveSubdivisionCount for scales. Use new octaveCount instead which
-                    // subdivides the samples array into octaveCount octaves. We then get:
-                    // int sampleCountPerOctave = sampleCount / octaveCount;
-                    // int octave = 12 * (i * octaveCount) / sampleCount;
-                    // int scaleIndex = ((i % sampleCountPerOctave) * scaleKeys.length) / sampleCountPerOctave
-                    // int key = scaleKeys[scaleIndex]
-                    final int octave = 12 * (i / octaveSubdivisionCount);
-                    final int key = scaleKeys[i % scaleKeys.length];
+                    int sampleCountPerOctave = sampleCount / octaveCount;
+                    int octave = 12 * (i * octaveCount) / sampleCount;
+                    int scaleIndex = ((i % sampleCountPerOctave) * scaleKeys.length) / sampleCountPerOctave;
+                    int key = scaleKeys[scaleIndex];
                     carrierFrequency = equalTemperament(minFrequency, octave + key, 12.0);
                 }
                 carrierFrequencies[i] = carrierFrequency;
@@ -254,7 +250,7 @@ public class Algorithm {
         } else {
             carrierFrequencies = null;
         }
-        System.out.println("carrierFrequencies = " + Arrays.toString(carrierFrequencies));
+        // System.out.println("carrierFrequencies = " + Arrays.toString(carrierFrequencies));
     }
 
     private static double equalTemperament(double minFrequency, int keyIndex, double octaveSubdivisionCount) {

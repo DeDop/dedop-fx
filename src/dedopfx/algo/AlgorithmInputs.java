@@ -47,6 +47,7 @@ public class AlgorithmInputs {
     public static final double DEFAULT_MIN_FREQUENCY = 0.5 * 440;
     public static final double DEFAULT_MAX_FREQUENCY = 10 * 440;
     public static final int DEFAULT_OCTAVE_SUBDIVISION_COUNT = 12;
+    public static final int DEFAULT_OCTAVE_COUNT = 6;
     public static final double DEFAULT_AMPLITUDE_SUM_RATIO = 1.0;
     public static final Harmonics DEFAULT_HARMONICS_MODE = Harmonics.OFF;
     public static final int DEFAULT_PARTIALS_COUNT = 2;
@@ -70,6 +71,7 @@ public class AlgorithmInputs {
     private final DoubleProperty minFrequency = new SimpleDoubleProperty(DEFAULT_MIN_FREQUENCY);
     private final DoubleProperty maxFrequency = new SimpleDoubleProperty(DEFAULT_MAX_FREQUENCY);
     private final IntegerProperty octaveSubdivisionCount = new SimpleIntegerProperty(DEFAULT_OCTAVE_SUBDIVISION_COUNT);
+    private final IntegerProperty octaveCount = new SimpleIntegerProperty(DEFAULT_OCTAVE_COUNT);
     private final DoubleProperty amplitudeWeighting = new SimpleDoubleProperty(DEFAULT_AMPLITUDE_SUM_RATIO);
     private final Property<Waveform> carrierWaveform = new SimpleObjectProperty<>(DEFAULT_WAVEFORM);
     private final Property<Waveform> modulationWaveform = new SimpleObjectProperty<>(DEFAULT_WAVEFORM);
@@ -97,6 +99,7 @@ public class AlgorithmInputs {
         minFrequency.setValue(DEFAULT_MIN_FREQUENCY);
         maxFrequency.setValue(DEFAULT_MAX_FREQUENCY);
         octaveSubdivisionCount.setValue(DEFAULT_OCTAVE_SUBDIVISION_COUNT);
+        octaveCount.setValue(DEFAULT_OCTAVE_COUNT);
         carrierWaveform.setValue(DEFAULT_WAVEFORM);
         harmonicsMode.setValue(DEFAULT_HARMONICS_MODE);
         partialCount.setValue(DEFAULT_PARTIALS_COUNT);
@@ -121,6 +124,7 @@ public class AlgorithmInputs {
         store.put("minFrequency", minFrequency.get());
         store.put("maxFrequency", maxFrequency.get());
         store.put("octaveSubdivisionCount", octaveSubdivisionCount.get());
+        store.put("octaveCount", octaveCount.get());
         store.put("carrierWaveform", carrierWaveform.getValue());
         store.put("harmonicsMode", harmonicsMode.getValue());
         store.put("partialCount", partialCount.get());
@@ -145,6 +149,7 @@ public class AlgorithmInputs {
         minFrequency.set(store.get("minFrequency", DEFAULT_MIN_FREQUENCY));
         maxFrequency.set(store.get("maxFrequency", DEFAULT_MAX_FREQUENCY));
         octaveSubdivisionCount.set(store.get("octaveSubdivisionCount", DEFAULT_OCTAVE_SUBDIVISION_COUNT));
+        octaveCount.set(store.get("octaveCount", DEFAULT_OCTAVE_COUNT));
         carrierWaveform.setValue(store.get("carrierWaveform", DEFAULT_WAVEFORM, Waveform.WAVEFORMS));
         harmonicsMode.setValue(store.get("harmonicsMode", DEFAULT_HARMONICS_MODE, Harmonics.values()));
         partialCount.set(store.get("partialCount", DEFAULT_PARTIALS_COUNT));
@@ -287,6 +292,14 @@ public class AlgorithmInputs {
 
     public IntegerProperty octaveSubdivisionCountProperty() {
         return octaveSubdivisionCount;
+    }
+
+    public int getOctaveCount() {
+        return octaveCount.get();
+    }
+
+    public IntegerProperty octaveCountProperty() {
+        return octaveCount;
     }
 
     public Waveform getCarrierWaveform() {
