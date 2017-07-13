@@ -11,10 +11,14 @@ audio samples. You can get SRAL netCDF sample files (`*.nc`) from the [Sentinel-
 This software is distributed under the terms and conditions of the [MIT License (MIT)](https://opensource.org/licenses/MIT).
 
 
-
 # Developer Guide
 
 ## Creating DeDop FX installers
+
+Compile the Java code first. Expected output directories are 
+* `out/production` for production Java code in `src`
+* `out/production/dedopfx/resources` for resources in `src/dedopfx/resources`
+* `out/test` for test Java code `test`
 
 ### Windows
 
@@ -23,14 +27,23 @@ Refer to [javapackager](http://docs.oracle.com/javase/8/docs/technotes/tools/uni
 1. Install [Inno Setup Compiler](http://www.jrsoftware.org/isinfo.php).
 2. Install [WiX tools](http://wixtoolset.org/) and add it (`C:\Program Files (x86)\WiX Toolset v3.10\bin`) to your `PATH`.
 3. Open command prompt (`cmd.exe`), then
-```
-    > cd dedop-fx
-    > mkwin
-```
+    ```
+        > cd dedop-fx
+        > mkwin
+    ```
+4. To create signed installers, set required environment variables 
+    * `CRC_FILE` to a certificate file `*.p12`;
+    * `CSC_KEY_PASSWORD` to the password for the certificate
+    and run once more.
 
 ### Mac OS X
 
-TODO
+Just run
+
+```
+    > cd dedop-fx
+    > bash ./mkmac.sh
+```
 
 ### Linux
    
