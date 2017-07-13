@@ -1,10 +1,20 @@
 # About
 
-**DeDop FX** is an experimental (=fun) tool which *plays* satellite altimeter data. Currently it can transform the L1B data from the [SRAL](https://sentinel.esa.int/web/sentinel/missions/sentinel-3/instrument-payload/altimetry) 
+**DeDopFX** is an experimental (=fun) tool which converts satellite altimeter measurement data into *sound*. Currently it can transform the L1B data from the [SRAL](https://sentinel.esa.int/web/sentinel/missions/sentinel-3/instrument-payload/altimetry) 
 sensor mounted on the [ESA Sentinel-3](http://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-3) satellite into 
-audio samples. You can get SRAL netCDF sample files (`*.nc`) from the [Sentinel-3A Altimetry Test Data Set](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-3-altimetry/test-data-set). 
+audio samples. 
+
+DeDopFX can play the L1B NetCDF output files (`*.nc`) from the [DeDop Processor](https://github.com/DeDop/dedop-core/releases) or the SRAL sample files from the [Sentinel-3A Altimetry Test Data Set](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-3-altimetry/test-data-set). 
 
 ![DeDop FX Screenshot](https://github.com/DeDop/dedop-fx/blob/master/screenshot.png)
+
+
+# Missing Features
+
+* **Audio output level indicator** that also shows if we clip to lower/upper 16bit limits
+* **High CPU load indicator** that warns if computer is too slow to stay above the sample rate of 44100 samples/sec
+* **More visualisations**: show all input data as image, show currently played record within it
+
 
 # License
 
@@ -50,10 +60,4 @@ Just run
 TODO
 
 
-
-# Missing Features
-
-* **Audio output level indicator** that also shows if we clip to lower/upper 16bit limits
-* **High CPU load indicator** that warns if computer is too slow to stay above the sample rate of 44100 samples/sec
-* **More visualisations**: show all input data as image, show currently played record within it
 
