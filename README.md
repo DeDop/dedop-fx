@@ -6,7 +6,22 @@ audio samples.
 
 DeDopFX can play the L1B NetCDF output files (`*.nc`) from the [DeDop Processor](https://github.com/DeDop/dedop-core/releases) or the SRAL sample files from the [Sentinel-3A Altimetry Test Data Set](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-3-altimetry/test-data-set). 
 
+Here is a screenshot (Windows):
+
 ![DeDop FX Screenshot](https://github.com/DeDop/dedop-fx/blob/master/screenshot.png)
+
+
+# Quick start
+
+Make sure, you have sound enabled.
+
+1. Start DeDopFX
+2. In main menu select **File / Load Source File...**, then select a L1B (.nc) file from your file system
+3. Press **Play**
+4. In tab **Source Mapping**,
+   - adjust the **Maximum source value** until you hear something, around `3000` is a good starting point
+   - adjust other settings, they all influence the sound in terms of pitch, timbre, and harmonics
+5. Select *File / Save* from main menu, if you believe, your settings should be saved 
 
 
 # Missing Features
