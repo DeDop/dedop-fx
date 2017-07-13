@@ -36,7 +36,7 @@ Make sure, you have sound enabled.
 This software is distributed under the terms and conditions of the [MIT License (MIT)](https://opensource.org/licenses/MIT).
 
 
-# Developer Guide
+# For Developers
 
 ## Creating DeDop FX installers
 
